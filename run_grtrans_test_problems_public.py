@@ -196,5 +196,5 @@ def run_test_problems(save=0,pgrtrans=0,nosphacc=0,compile=0):
 
 if __name__ == '__main__':
     print 'running test problems...'
-    passed, max_passed, failed = run_test_problems(save=0)
+    passed, max_passed, failed, xlist = run_test_problems(save=0)
 
