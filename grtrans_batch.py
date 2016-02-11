@@ -3,7 +3,7 @@ import namelist as nm
 import numpy as np
 import matplotlib.pyplot as plt
 #import matplotlib.image as mpimg
-import pyfits
+import astropy.io.fits as pyfits
 # f2py grtrans module
 from pgrtrans import pgrtrans
 from time import time
