@@ -1,0 +1,8 @@
+*.o
+*.mod
+*.pyc
+*.in
+*.a
+*.so
+*.out
+grtrans
