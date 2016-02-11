@@ -17,6 +17,8 @@ endif
 
 ifeq ($(USEGNU),1)
 FC=gfortran
+CC=gcc
+CXX=g++
 AR=ar
 ARFLAGS=rcv
 OMP = -fopenmp
@@ -30,6 +32,10 @@ OTHERFLAGS = -ffixed-line-length-132 -pg -W -Wall -fPIC
 else
 OTHERFLAGS = -ffixed-line-length-132 -fopenmp -O3 -W -Wall -fPIC
 endif
+endif
+
+ifeq ($(GRTRANSDIR),"")
+GRTRANSDIR := .
 endif
 
 # compile for co-processor
@@ -47,7 +53,6 @@ endif
 all: grtrans libgrtrans pgrtrans
 lib: libgrtrans
 public: grtrans_public
-pgrtrans: pgrtrans
 phi: grtrans_phi
 commit: 
 	python commit_grtrans.py
@@ -138,6 +143,7 @@ OBJPUB = odepack_aux.o interpolate_aux.o geokerr_wrapper.o interpolate.o read_in
 polsynchemis.o geodesics.o math.o camera.o phys_constants.o fits.o fluid_model_thindisk.o fluid_model_phatdisk.o fluid_model_numdisk.o fluid_model_hotspot.o fluid_model_hotspot_schnittman.o fluid_model_ffjet.o fluid_model_harm.o grtrans.o grtrans_program.o chandra_tab24.o
 clean: neat
 	-rm -f .grtrans.cppdefs $(OBJ) *.mod grtrans
+	-rm -f grtrans_batch.pyc libgrtrans.a namelist.pyc pgrtrans.so
 neat:
 	-rm -f $(TMPFILES)
 TAGS: $(SRC)
